@@ -3,7 +3,6 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
 <div class="container-login">
     <div class="row">
         <h3 class="titulo">Entrar no Sistema</h3>
@@ -24,7 +23,7 @@
                 <div class="form-group">
                     @Html.LabelFor(m => m.Senha, new { @class = "form-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Senha, new { @class = "form-control" })
+                        @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
                     </div>
                 </div>
