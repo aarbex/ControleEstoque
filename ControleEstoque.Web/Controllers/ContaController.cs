@@ -11,7 +11,7 @@ namespace ControleEstoque.Web.Controllers
     public class ContaController : Controller
     {
 
-        
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -22,7 +22,7 @@ namespace ControleEstoque.Web.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login (LoginViewModel login, string returnUrl)
+        public ActionResult Login(LoginViewModel login, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -34,20 +34,12 @@ namespace ControleEstoque.Web.Controllers
             if (achou)
             {
                 FormsAuthentication.SetAuthCookie(login.Usuario, login.LembrarMe);
-                if (Url.IsLocalUrl(returnUrl))
-                {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    RedirectToAction("Index", "Home");
-                }
+                return RedirectToAction("Index", "Home");
             }
             else
             {
                 ModelState.AddModelError("", "Login Inválido.");
             }
-
             return View(login);
         }
 
