@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ControleEstoque.Web.Models;
 
 namespace ControleEstoque.Web.Controllers
 {
     public class CadastroController : Controller
     {
+        private static List<GrupoProdutoModel> _listaGrupoProduto = new List<GrupoProdutoModel>()
+        {
+            new GrupoProdutoModel() { Id = 1, Nome= "Livros", Ativo=true},
+            new GrupoProdutoModel() { Id = 2, Nome= "Mouses", Ativo=true},
+            new GrupoProdutoModel() { Id = 3, Nome= "Monitores", Ativo=false},
+        };
+
         [Authorize]
         public ActionResult GrupoProduto()
         {
-            return View();
+            return View(_listaGrupoProduto);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult RecuperarGrupoProduto(int id)
+        {
+            return Json(_listaGrupoProduto.Find(x => x.Id == id));
         }
 
 
